@@ -20,6 +20,21 @@ function checkAndRequestPermissions(): void {
         `[eventkit] Permissions not granted - Calendars: ${status.calendars}, Reminders: ${status.reminders}`
       );
 
+      try {
+        eventKitBridge.requestCalendarAccess();
+        eventKitBridge.requestAccess();
+      } catch (error) {
+        console.error(`[eventkit] Error requesting permissions:`, error);
+      }
+
+      const refreshed = eventKitBridge.checkPermissions();
+      if (refreshed.calendarsGranted && refreshed.remindersGranted) {
+        console.error(
+          `[eventkit] Permissions granted - Calendars: ${refreshed.calendars}, Reminders: ${refreshed.reminders}`
+        );
+        return;
+      }
+
       // Open the Setup app to request permissions
       if (existsSync(SETUP_APP_PATH)) {
         console.error(

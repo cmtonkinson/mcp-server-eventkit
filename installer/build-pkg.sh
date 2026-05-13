@@ -12,8 +12,8 @@ APP_NAME="MCP EventKit.app"
 SETUP_APP_NAME="MCP EventKit Setup.app"
 
 # Code signing identities (set these environment variables or modify here)
-APP_SIGN_IDENTITY="${APP_SIGN_IDENTITY:-Developer ID Application: Alejandro Sanchez Rodriguez (8J6557H8MJ)}"
-PKG_SIGN_IDENTITY="${PKG_SIGN_IDENTITY:-Developer ID Installer: Alejandro Sanchez Rodriguez (8J6557H8MJ)}"
+APP_SIGN_IDENTITY="${APP_SIGN_IDENTITY:-}"
+PKG_SIGN_IDENTITY="${PKG_SIGN_IDENTITY:-}"
 ENTITLEMENTS="$SCRIPT_DIR/entitlements.plist"
 
 echo "Building MCP EventKit Server installer v${VERSION}..."
@@ -139,10 +139,6 @@ productbuild \
     "$PROJECT_DIR/dist/$PKG_NAME"
 
 # Sign the pkg
-echo "Signing installer package..."
-productsign --sign "$PKG_SIGN_IDENTITY" \
-    "$PROJECT_DIR/dist/$PKG_NAME" \
-    "$PROJECT_DIR/dist/${PKG_NAME%.pkg}-signed.pkg"
 
 # Replace unsigned with signed
 mv "$PROJECT_DIR/dist/${PKG_NAME%.pkg}-signed.pkg" "$PROJECT_DIR/dist/$PKG_NAME"
