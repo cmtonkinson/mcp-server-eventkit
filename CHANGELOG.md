@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - TypeScript wrapper `deleteReminder` in eventkit-bridge.ts
   - MCP tool registration in delete-reminder.ts
 
+### Changed
+
+- Update the MCP SDK, Zod, and development dependencies to stable releases.
+- Use TypeScript 7 for type checking with the TypeScript 6 compatibility API
+  required by typescript-eslint.
+- Declare the ESLint core configuration dependency directly.
+
 ## [0.1.2] - 2024-12-19
 
 ### Added
